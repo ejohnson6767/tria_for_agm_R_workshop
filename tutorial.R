@@ -209,6 +209,7 @@ iris %>% distinct(Species)
 
 # Filtering using the PIPE %>% (Ctrl + Shift + M)
 iris %>% filter(Species == "virginica") %>% head() # only look at virginica
+iris[which(iris$Species == "virginica"),]
 iris %>% filter(Species != "virginica") %>% head() # look at everything except for virginica
 iris %>% filter(Species %in%  c("virginica", "setosa")) %>% head() # look at virginica and setosa
 iris %>% filter(Petal.Length < 1 | Petal.Width < 0.5) %>% head() # look at rows where the petal length or width is small.
@@ -252,9 +253,11 @@ iris %>%
 plot(x=iris$Petal.Length, y=iris$Petal.Width)
 
 # scatterplots in ggplot
-iris %>% ggplot(aes(x = Petal.Length, y = Petal.Width) )
+iris %>% ggplot(mapping=aes(x = Petal.Length, y = Petal.Width))
 
-iris %>% ggplot(aes(x = Petal.Length, y = Petal.Width) ) + geom_point()
+iris %>% 
+  ggplot(aes(x = Petal.Length, y = Petal.Width) ) + 
+  geom_point()
 
 iris %>% ggplot(aes(x = Petal.Length, y = Petal.Width, col = Species) ) + geom_point()
 
@@ -298,6 +301,12 @@ attendance <- data.frame(
 grades_attendance <- left_join(grades, attendance, by = "StudentID")
 
 grades_attendance
+
+
+my_path <- "document/workshop"
+set_wd(my_path)
+
+paste0(my_path, "/ab_disk_data.csv")
 
 
 
